@@ -1,10 +1,15 @@
-@prefix : <https://w3id.org/emmo/sosa-emmo#> .
+@prefix : <https://w3id.org/sosa-emmo#> .
+@prefix sosa-emmo: <https://w3id.org/sosa-emmo#> .
 @prefix emmo: <https://w3id.org/emmo#> .
+
 @prefix chameo: <https://w3id.org/emmo/domain/characterisation-methodology/chameo#> .
 @prefix domain-battery: <https://w3id.org/emmo/domain/battery/battery#> .
 @prefix domain-electrochemistry: <https://w3id.org/emmo/domain/electrochemistry/electrochemistry#> .
 @prefix domain-chemical-substance: <https://w3id.org/emmo/domain/chemical-substance#> .
 @prefix bto: <http://w3id.org/emmo-bto/bto#> .
+
+@prefix sosa: <https://www.w3.org/ns/sosa/#> .
+
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -19,9 +24,10 @@
 @base <https://w3id.org/emmo/sosa-emmo> .
 
 <https://w3id.org/emmo/sosa-emmo> rdf:type owl:Ontology ;
-	owl:versionIRI <<https://w3id.org/emmo/1.0.2/sosa-emmo#>> ;
-	owl:imports <https://w3id.org/emmo/domain/characterisation-methodology/chameo>
-				<https://w3id.org/emmo/1.0.2> ;	
+	owl:versionIRI <https://w3id.org/sosa-emmo> ;
+	owl:imports <https://w3id.org/emmo/domain/characterisation-methodology/chameo> ,
+				<https://w3id.org/emmo/1.0.2> ,
+				<https://www.w3.org/ns/sosa/> ;	
 	    			
 	dcterms:abstract "Alignment between SOSA and EMMO"@en ;
 	dcterms:alternative "sosa-emmo" ;
@@ -54,3 +60,92 @@
 	owl:priorVersion "1.0.0" ;
 	owl:versionInfo "1.0.0" ;
 	skos:hiddenLabel "sosa-emmo" .
+	
+	
+
+
+
+### Classes ###
+
+sosa:ActuatableProperty rdfs:subClassOf emmo:Property .
+
+sosa:Actuation rdfs:subClassOf emmo:Procedure .
+
+sosa:Actuator rdfs:subClassOf emmo:Device .
+
+sosa:FeatureOfInterest rdfs:subClassOf emmo:Referent .
+
+sosa:ObservableProperty rdfs:subClassOf emmo:Property .
+
+sosa:Observation rdfs:subClassOf emmo:Observation .
+
+sosa:Platform rdfs:subClassOf emmo:Device .
+
+sosa:Procedure rdfs:subClassOf emmo:ProceduralData .
+
+sosa:Result rdfs:subClassOf emmo:Data .
+sosa-emmo:alignmentNote1 a rdf:Statement ;
+	rdf:subject sosa:Result ;
+	rdf:predicate rdfs:subClassOf ;
+	rdf:object emmo:Data ;
+	emmo:comment "For more specific instances, sosa:Result could be aligned with (deemed a subclass of) chameo:CharacterisationData or emmo:MeasurementResult, for instance."@en .
+	
+sosa:Sample skos:closeMatch chameo:Sample .
+chameo:Sample rdfs:subClassOf sosa:Sample .
+
+sosa:Sampler rdfs:subClassOf emmo:Device .
+chameo:SampleExtractionInstrument rdfs:subClassOf sosa:Sampler .
+chameo:SamplePreparationInstrument rdfs:subClassOf sosa:Sampler .
+
+sosa:Sampling rdfs:subClassOf emmo:Procedure .
+chameo:SampleExtraction rdfs:subClassOf sosa:Sampling .
+chameo:SamplePreparation rdfs:subClassOf sosa:Sampling .
+sosa-emmo:alignmentNote2 a rdf:Statement ;
+	rdf:subject sosa:Sampling ;
+	rdf:predicate rdfs:subClassOf ;
+	rdf:object emmo:Procedure ;
+	emmo:comment "For more specific cases, sosa:Sampling could be aligned with (deemed a subclass of) chameo:CharacterisationProcedure."@en .
+
+sosa:Sensor: rdfs:subClassOf emmo:Observer .
+
+### Object properties ###
+
+sosa:actsOnProperty rdfs:subPropertyOf emmo:directlyCauses .
+# sosa:actsOnProperty rdfs:subPropertyOf emmo:isCauseOf .
+sosa:isActedOnBy rdfs:subPropertyOf emmo:directlyCausedBy .
+# sosa:isActedOnBy rdfs:subPropertyOf emmo:isCausedBy .
+
+sosa:hasFeatureOfInterest rdfs:subPropertyOf emmo:isParticipatedBy .
+sosa:isFeatureOfInterestOf rdfs:subPropertyOf emmo:participatesTo .
+
+sosa:hasResult rdfs:subPropertyOf emmo:hasOutput .
+sosa:isResultOf rdfs:subPropertyOf emmo:isOutputOf .
+
+sosa:hasSample rdfs:subPropertyOf emmo:hasPart .
+sosa:isSampleOf rdfs:subPropertyOf emmo:isPartOf .
+
+sosa:hosts rdfs:subPropertyOf emmo:hasPart .
+sosa:isHostedBy rdfs:subPropertyOf emmo:isPartOf .
+
+sosa:isObservedBy rdfs:subPropertyOf emmo:isConventionFor .
+sosa:observes rdfs:subPropertyOf emmo:hasConvention .
+
+sosa:madeByActuator rdfs:subPropertyOf emmo:isParticipatedBy .
+sosa:madeBySampler rdfs:subPropertyOf emmo:isParticipatedBy .
+sosa:madeBySensor rdfs:subPropertyOf emmo:isParticipatedBy .
+
+sosa:madeActuation rdfs:subPropertyOf emmo:participatesTo .
+sosa:madeObservation rdfs:subPropertyOf emmo:participatesTo .
+sosa:madeSampling rdfs:subPropertyOf emmo:participatesTo .
+
+sosa:observedProperty rdfs:subPropertyOf emmo:hasSign .
+
+sosa:usedProcedure rdfs:subPropertyOf emmo:isRepresentedBy .
+
+sosa:phenomenonTime rdfs:subPropertyOf emmo:hasConvention .
+
+### Datatype properties ###
+
+sosa:hasSimpleResult rdfs:subPropertyOf emmo:hasDataValue .
+
+# sosa:resultTime TBD
