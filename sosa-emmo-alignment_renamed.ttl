@@ -8,7 +8,7 @@
 @prefix domain-chemical-substance: <https://w3id.org/emmo/domain/chemical-substance#> .
 @prefix bto: <http://w3id.org/emmo-bto/bto#> .
 
-@prefix sosa: <https://www.w3.org/ns/sosa/#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
 
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -27,7 +27,7 @@
 	owl:versionIRI <https://w3id.org/sosa-emmo> ;
 	owl:imports <https://w3id.org/emmo/domain/characterisation-methodology/chameo> ,
 				<https://w3id.org/emmo/1.0.2> ,
-				<https://www.w3.org/ns/sosa/> ;	
+				<http://www.w3.org/ns/sosa/> ;	
 	    			
 	dcterms:abstract "Alignment between SOSA and EMMO"@en ;
 	dcterms:alternative "sosa-emmo" ;
@@ -106,7 +106,7 @@ sosa-emmo:alignmentNote2 a rdf:Statement ;
 	rdf:object emmo:EMMO_472a0ca2_58bf_4618_b561_6fe68bd9fd49 ;
 	emmo:EMMO_c7b62dd7_063a_4c2a_8504_42f7264ba83f "For more specific cases, sosa:Sampling could be aligned with (deemed a subclass of) chameo:CharacterisationProcedure."@en .
 
-sosa:Sensor: rdfs:subClassOf emmo:EMMO_ea67caa5_2609_4e91_98ae_81103f2d5c25 .
+sosa:Sensor rdfs:subClassOf emmo:EMMO_ea67caa5_2609_4e91_98ae_81103f2d5c25 .
 
 ### Object properties ###
 
