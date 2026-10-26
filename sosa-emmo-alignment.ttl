@@ -106,7 +106,7 @@ sosa-emmo:alignmentNote2 a rdf:Statement ;
 	rdf:object emmo:Procedure ;
 	emmo:comment "For more specific cases, sosa:Sampling could be aligned with (deemed a subclass of) chameo:CharacterisationProcedure."@en .
 
-sosa:Sensor: rdfs:subClassOf emmo:Observer .
+sosa:Sensor rdfs:subClassOf emmo:Observer .
 
 ### Object properties ###
 
